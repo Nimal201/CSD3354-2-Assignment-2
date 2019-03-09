@@ -1,42 +1,81 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 //---------- Nirmal Patel------- C0730194-------
 //-----------Harpreet Singh------C0727128-------
-
-namespace C073084_Satinder_CSD3354_1_MARCH_6
+namespace DelegatesAndEvents
 {
     public class Program
-    {
-        public static void Main()
-        {
-            DelegateExercises delegateExercises = new DelegateExercises();
-            try
-            {
-                delegateExercises.Method3();
-                Console.ReadLine();
-            }
-            catch (System.Exception ex)
-            {
-                System.Console.WriteLine("Exception Occurred.");
-                Console.ReadLine();
 
-            }
+    {
+
+        public static void Main()
+
+        {
+
+            DelegateExercises delegateExercises = new DelegateExercises();
+
+            delegateExercises.Method3();
+
+            Console.ReadLine();
+
         }
+
+
+
+
+
     }
 
-    public delegate void MyDelegate();
+}
 
-    public class DelegateExercises
+
+
+
+
+
+
+public delegate void MyDelegate(ref int intValue);
+
+
+
+public class DelegateExercises
+
+{
+
+
+
+    void Method1(ref int intValue)
+
     {
-        void Method1()
-        {
-            throw new System.Exception();
-        }
 
-        public void Method3()
-        {
-            MyDelegate myDelegate = new MyDelegate(Method1);
-            myDelegate();
-        }
+
+
+        intValue = intValue + 5;
+
+        System.Console.WriteLine("Method1 " + intValue);
+
+    }
+
+
+
+    public void Method3()
+
+    {
+
+        MyDelegate myDelegate = new MyDelegate(Method1);
+
+        MyDelegate myDelegate1 = new MyDelegate(Method1);
+
+        MyDelegate myDelegate2 = myDelegate + myDelegate1;
+
+        int intParameter = 5;
+
+        myDelegate2(ref intParameter);
+
     }
 
 }
