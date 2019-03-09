@@ -6,41 +6,30 @@ using System.Threading.Tasks;
 
 //---------- Nirmal Patel------- C0730194-------
 //-----------Harpreet Singh------C0727128-------
-
 namespace DelegatesAndEvents
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             DelegateExercises de = new DelegateExercises();
-            de.Method3(10);
+            de.Method3();
             Console.Read();
         }
     }
-
+    public delegate void MyDelegate();
     public class DelegateExercises
     {
-        public delegate int MyDelegate(int i);
-        public int Method1(int intMethod1)
+        void Method1()
         {
-            return intMethod1 * 2;
+            System.Console.WriteLine("Method1");
         }
-        public int Method2(int intMethod1)
-        {
-            return intMethod1 * 10;
-        }
-        public void Method4(MyDelegate myDelegate)
-        {
-            int result = myDelegate(10);
-            System.Console.WriteLine(result);
-        }
-        public void Method3(int intMethod3)
+        public void Method3()
         {
             MyDelegate myDelegate = new MyDelegate(Method1);
-            Method4(myDelegate);
-            myDelegate = new MyDelegate(Method2);
-            Method4(myDelegate);
+            myDelegate();
+            Console.WriteLine(myDelegate.ToString());
         }
     }
+
 }
